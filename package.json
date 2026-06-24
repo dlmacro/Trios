@@ -1,0 +1,88 @@
+{
+  "name": "trios",
+  "productName": "Trios®",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "electron:dev": "concurrently \"vite\" \"wait-on http://localhost:5173 && cross-env NODE_ENV=development electron .\"",
+    "electron:build": "vite build && electron-builder",
+    "electron:build:win": "vite build && electron-builder --win",
+    "og": "electron landing/og/generate.mjs"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.2.2",
+    "dexie": "^4.3.0",
+    "lucide-react": "^0.577.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-qr-code": "^2.0.18",
+    "react-router-dom": "^7.13.1",
+    "recharts": "^3.8.1",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.4",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.0",
+    "autoprefixer": "^10.4.27",
+    "concurrently": "^9.2.1",
+    "cross-env": "^7.0.3",
+    "electron": "^41.2.0",
+    "electron-builder": "^26.8.1",
+    "eslint": "^9.39.4",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "globals": "^17.4.0",
+    "postcss": "^8.5.8",
+    "tailwindcss": "^4.2.2",
+    "vite": "^8.0.0",
+    "wait-on": "^9.0.5"
+  },
+  "build": {
+    "appId": "com.trios.school-portal",
+    "productName": "Trios®",
+    "copyright": "Copyright © 2025 TRIOS",
+    "asar": true,
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "build/Icon.ico",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/Icon.ico",
+      "requestedExecutionLevel": "asInvoker"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "allowElevation": true,
+      "installerIcon": "build/Icon.ico",
+      "uninstallerIcon": "build/Icon.ico",
+      "installerHeaderIcon": "build/Icon.ico",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Trios®",
+      "displayLanguageSelector": false,
+      "runAfterFinish": true
+    }
+  }
+}
